@@ -3,7 +3,8 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from classification import conf
 import logging
 import numpy as np
-
+import os
+import pickle
 
 LOG = logging.getLogger(__name__)
 
@@ -54,6 +55,23 @@ def td_idf(is_eng=True):
 
     """
     return TfidfVectorizer(stop_words='english', token_pattern=r'\b[^\W\d_]+\b')
+
+
+def save(obj, path):
+    """Save Classifier object to pickle file."""
+    if os.path.isfile(path):
+        LOG.info('File existed! Use load() method.')
+    else:
+        pickle.dump(obj, open(path, 'wb'), pickle.HIGHEST_PROTOCOL)
+
+
+def load(path):
+    """Load Classifier object from pickle file"""
+    if not os.path.isfile(path):
+        LOG.info('File doesnt existed!')
+        raise IOError()
+    else:
+        return pickle.load(open(path, 'rb'))
 
 
 if __name__ == '__main__':
