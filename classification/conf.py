@@ -1,11 +1,13 @@
 import os
 
 SQLITE_DB = '/home/vanduc/lagtime.sqlite'
+# SQLITE_DB = '/home/vanduc/p4.sqlite'
 
 QUERY = """SELECT `content`, `type`
-        FROM `news`
-        ORDER BY RANDOM()
-        LIMIT 10000"""
+      FROM `news`
+      WHERE `type` IN ('business', 'entertainment', 'travel',
+                    'sports', 'technology')
+      ORDER BY RANDOM() LIMIT 10000"""
 
 SVM_PARAMS = [
     {

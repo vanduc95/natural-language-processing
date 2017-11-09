@@ -4,10 +4,12 @@ import pickle
 import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
+import time
 
 from classification import conf
 from classification import utils
 
+start_time = time.time()
 LOG = logging.getLogger(__name__)
 
 
@@ -86,7 +88,12 @@ def excute(alogrithm, text_extraction, content):
 
 
 if __name__ == '__main__':
-    classifier = Classifier('SVM', 'TF-IDF')
-    utils.save(classifier, conf.SAVED_DIR + 'SVM_TF IDF_eng.pickle')
 
-    print(excute('SVM', 'TFIDF', 'sports boxing'))
+    # classifier = Classifier('SVM', 'TF-IDF')
+    # utils.save(classifier, conf.SAVED_DIR + 'SVM_TF IDF_eng.pickle')
+
+    classifier = Classifier('SVM', 'Bag of word')
+    utils.save(classifier, conf.SAVED_DIR + 'SVM_Bag Of Words_eng.pickle')
+
+    # print(excute('SVM', 'TFIDF', 'sports boxing sports business sports sports sports'))
+    # print("--- %s seconds ---" % (time.time() - start_time))

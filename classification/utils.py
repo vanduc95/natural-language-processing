@@ -47,14 +47,13 @@ def get_data_from_db():
 def bag_of_words():
     """Bag of words vectorize.
     """
-    return CountVectorizer(stop_words='english', token_pattern=r'\b[^\W\d_]+\b')
+    return CountVectorizer(stop_words='english', token_pattern=r'\b[^\W\d_]+\b', max_features=None)
 
 
 def td_idf(is_eng=True):
     """Tf Idf vectorize.
-
     """
-    return TfidfVectorizer(stop_words='english', token_pattern=r'\b[^\W\d_]+\b')
+    return TfidfVectorizer(stop_words='english', token_pattern=r'\b[^\W\d_]+\b', max_features=None)
 
 
 def save(obj, path):
