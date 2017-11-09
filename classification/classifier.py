@@ -34,7 +34,7 @@ class Classifier(object):
         """Convert from text to vector."""
         contents, labels = self.load_train_set()
 
-        if self.text_extract_type == 'Bag Of Words':
+        if self.text_extract_type == 'BOW':
             LOG.info('Convert contents to BOW.')
             self.vectorizer = utils.bag_of_words()
         else:
@@ -73,15 +73,15 @@ class Classifier(object):
 
 def excute(alogrithm, text_extraction, content):
     if alogrithm == 'KNN':
-        if text_extraction == 'Bag of word':
+        if text_extraction == 'BOW':
             path = os.path.dirname(os.path.realpath(__file__)) + "/saved/K-NN_Bag Of Words_eng.pickle"
         else:
             path = os.path.dirname(os.path.realpath(__file__)) + "/saved/K-NN_TF IDF_eng.pickle"
     else:
-        if text_extraction == 'Bag of word':
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_Bag Of Words_eng.pickle"
+        if text_extraction == 'BOW':
+            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_BOW.pickle"
         else:
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_TF IDF_eng.pickle"
+            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_TF-IDF.pickle"
     a = pickle.load(open(path, 'rb'))
     result = a.predict([content])
     return result[0]
@@ -89,11 +89,14 @@ def excute(alogrithm, text_extraction, content):
 
 if __name__ == '__main__':
 
-    # classifier = Classifier('SVM', 'TF-IDF')
-    # utils.save(classifier, conf.SAVED_DIR + 'SVM_TF IDF_eng.pickle')
+    classifier = Classifier('SVM', 'TF-IDF')
+    utils.save(classifier, conf.SAVED_DIR + 'SVM_TF-IDF.pickle')
+    print(excute('SVM', 'TF-IDF', 'sports boxing sports business sports sports sports'))
 
-    classifier = Classifier('SVM', 'Bag of word')
-    utils.save(classifier, conf.SAVED_DIR + 'SVM_Bag Of Words_eng.pickle')
 
-    # print(excute('SVM', 'TFIDF', 'sports boxing sports business sports sports sports'))
-    # print("--- %s seconds ---" % (time.time() - start_time))
+    # classifier = Classifier('SVM', 'BOW')
+    # utils.save(classifier, conf.SAVED_DIR + 'SVM_BOW.pickle')
+    # print(excute('SVM', 'BOW', 'sports boxing sports business sports sports sports'))
+
+
+    print("--- %s seconds ---" % (time.time() - start_time))
