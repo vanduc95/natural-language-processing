@@ -28,7 +28,7 @@ class Classifier(object):
 
     def load_train_set(self):
         """Load train set from database."""
-        return utils.get_data_from_db()
+        return utils.get_data_from_db('training')
 
     def word_to_vector(self):
         """Convert from text to vector."""
@@ -71,32 +71,32 @@ class Classifier(object):
         return self.estimator.predict(content)
 
 
-def excute(alogrithm, text_extraction, content):
-    if alogrithm == 'KNN':
-        if text_extraction == 'BOW':
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/K-NN_Bag Of Words_eng.pickle"
-        else:
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/K-NN_TF IDF_eng.pickle"
+def excute(text_extraction, content):
+    if text_extraction == 'BOW':
+        path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_BOW.pickle"
     else:
-        if text_extraction == 'BOW':
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_BOW.pickle"
-        else:
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_TF-IDF.pickle"
+        path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_TF-IDF.pickle"
+
     a = pickle.load(open(path, 'rb'))
-    result = a.predict([content])
-    return result[0]
+    result = a.predict(content)
+    return result
 
 
 if __name__ == '__main__':
 
-    classifier = Classifier('SVM', 'TF-IDF')
-    utils.save(classifier, conf.SAVED_DIR + 'SVM_TF-IDF.pickle')
-    print(excute('SVM', 'TF-IDF', 'sports boxing sports business sports sports sports'))
+    content = ''' love
+
+    '''
+
+
+    # classifier = Classifier('SVM', 'TF-IDF')
+    # utils.save(classifier, conf.SAVED_DIR + 'SVM_TF-IDF.pickle')
+    # print(excute('TF-IDF', content))
 
 
     # classifier = Classifier('SVM', 'BOW')
     # utils.save(classifier, conf.SAVED_DIR + 'SVM_BOW.pickle')
-    # print(excute('SVM', 'BOW', 'sports boxing sports business sports sports sports'))
+    print(excute('BOW', ['sport a game','sport']))
 
 
     print("--- %s seconds ---" % (time.time() - start_time))

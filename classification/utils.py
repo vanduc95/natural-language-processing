@@ -9,7 +9,7 @@ import pickle
 LOG = logging.getLogger(__name__)
 
 
-def get_data_from_db():
+def get_data_from_db(type_data):
     '''
     Get 'content' and 'type' from database
     :rtype: list
@@ -18,9 +18,15 @@ def get_data_from_db():
     # Initialize `connection` var to None. In case we could not
     # create a connection to the database(for ex the disk is full)
     # we would not have a connection var defined.
+
+    if type_data == 'training':
+        db = conf.SQLITE_DB_TRAINING
+    elif type_data == 'test':
+        db = conf.SQLITE_DB_TEST
+
     connection = None
     try:
-        connection = sqlite3.connect(conf.SQLITE_DB)
+        connection = sqlite3.connect(db)
 
         cursor = connection.cursor()
         cursor.execute(conf.QUERY)
