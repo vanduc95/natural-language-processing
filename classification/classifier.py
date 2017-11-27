@@ -84,19 +84,19 @@ def excute(text_extraction, content):
 
 if __name__ == '__main__':
 
-    content = ''' love
+    content = ''' sport a game
 
     '''
 
 
     # classifier = Classifier('SVM', 'TF-IDF')
     # utils.save(classifier, conf.SAVED_DIR + 'SVM_TF-IDF.pickle')
-    # print(excute('TF-IDF', content))
+    print(excute('TF-IDF', [content]))
 
 
     # classifier = Classifier('SVM', 'BOW')
     # utils.save(classifier, conf.SAVED_DIR + 'SVM_BOW.pickle')
-    print(excute('BOW', ['sport a game','sport']))
+    # print(excute('BOW', ['sport a game','sport']))
 
 
     print("--- %s seconds ---" % (time.time() - start_time))

@@ -6,8 +6,8 @@ SQLITE_DB_TEST = '/home/vanduc/p4.sqlite'
 
 QUERY = """SELECT `content`, `type`
       FROM `news`
-      WHERE `type` IN ('business', 'entertainment', 'travel',
-                    'sports', 'technology')
+      WHERE `type` IN ('business', 'entertainment', 'health',
+                    'sports', 'politics')
       ORDER BY RANDOM() LIMIT 1000"""
 
 SVM_PARAMS = [
