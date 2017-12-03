@@ -29,3 +29,8 @@ entertainment       0.70      0.91      0.79      2463
      politics       0.81      0.55      0.65      1633
 
   avg / total       0.89      0.88      0.88     20000
+  
+  
+3. Độ đo
+Precision: trong tập tìm được thì bao nhiêu cái (phân loại) đúng.
+Recall: trong số các tồn tại, tìm ra được bao nhiêu cái (phân loại).

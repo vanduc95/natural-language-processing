@@ -8,7 +8,7 @@ QUERY = """SELECT `content`, `type`
       FROM `news`
       WHERE `type` IN ('business', 'entertainment', 'health',
                     'sports', 'politics')
-      ORDER BY RANDOM() LIMIT 1000"""
+      ORDER BY RANDOM() LIMIT 200"""
 
 SVM_PARAMS = [
     {

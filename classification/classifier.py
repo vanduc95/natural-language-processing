@@ -71,6 +71,7 @@ class Classifier(object):
         return self.estimator.predict(content)
 
 
+
 def excute(text_extraction, content):
     if text_extraction == 'BOW':
         path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_BOW.pickle"
