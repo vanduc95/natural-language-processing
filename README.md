@@ -34,3 +34,5 @@ entertainment       0.70      0.91      0.79      2463
 3. Độ đo
 Precision: trong tập tìm được thì bao nhiêu cái (phân loại) đúng.
 Recall: trong số các tồn tại, tìm ra được bao nhiêu cái (phân loại).
+
+Sử dụng hold-out để đánh giá

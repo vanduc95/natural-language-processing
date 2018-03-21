@@ -10,6 +10,13 @@ QUERY = """SELECT `content`, `type`
                     'sports', 'politics')
       ORDER BY RANDOM() LIMIT 200"""
 
+
+KNN_PARAMS = {
+
+    'n_neighbors': [5],
+    'metric': ['euclidean', 'minkowski', 'manhattan']
+}
+
 SVM_PARAMS = [
     {
         'kernel': ['rbf'],
@@ -23,8 +30,11 @@ SVM_PARAMS = [
 ]
 
 
+
+
 # Saved DIR path
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
-print(CURRENT_DIR)
 SAVED_DIR = CURRENT_DIR + '/saved/'
+
+
