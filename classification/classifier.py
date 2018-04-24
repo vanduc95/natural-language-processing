@@ -80,15 +80,15 @@ class Classifier(object):
 
 def excute(alogrithm, text_extraction, content):
     if alogrithm == 'KNN':
-        if text_extraction == 'Bag of word':
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/KNN_BOW.pickle"
-        else:
+        if text_extraction == 'TF-IDF':
             path = os.path.dirname(os.path.realpath(__file__)) + "/saved/KNN_TF-IDF.pickle"
-    else:
-        if text_extraction == 'Bag of word':
-            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_BOW.pickle"
         else:
+            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/KNN_BOW.pickle"
+    else:
+        if text_extraction == 'TF-IDF':
             path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_TF-IDF.pickle"
+        else:
+            path = os.path.dirname(os.path.realpath(__file__)) + "/saved/SVM_BOW.pickle"
 
     a = pickle.load(open(path, 'rb'))
     result = a.predict(content)
@@ -106,9 +106,16 @@ if __name__ == '__main__':
     # utils.save(classifier, conf.SAVED_DIR + 'SVM_TF-IDF.pickle')
     # print(excute('SVM', 'TF-IDF', [content]))
 
+    # classifier = Classifier('SVM', 'BOW')
+    # utils.save(classifier, conf.SAVED_DIR + 'SVM_BOW.pickle')
+    # print(excute('SVM', 'BOW', [content]))
 
     # classifier = Classifier('KNN', 'TF-IDF')
     # utils.save(classifier, conf.SAVED_DIR + 'KNN_TF-IDF.pickle')
-    # print(excute('KNN', 'BOW', ['sport a game','politics']))
+    # print(excute('KNN', 'TF-IDF', ['sport a game','politics']))
+
+    classifier = Classifier('KNN', 'BOW')
+    utils.save(classifier, conf.SAVED_DIR + 'KNN_BOW.pickle')
+    print(excute('KNN', 'BOW', ['sport a game', 'politics']))
 
     print("--- %s seconds ---" % (time.time() - start_time))

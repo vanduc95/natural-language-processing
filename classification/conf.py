@@ -1,19 +1,37 @@
 import os
 
-# SQLITE_DB_TRAINING = '/home/vanduc/lagtime.sqlite'
 SQLITE_DB_TRAINING = '/home/vanduc/p4.sqlite'
 SQLITE_DB_TEST = '/home/vanduc/p4.sqlite'
 
-QUERY = """SELECT `content`, `type`
-      FROM `news`
-      WHERE `type` IN ('business', 'entertainment', 'health',
-                    'sports', 'politics')
-      ORDER BY RANDOM() LIMIT 200"""
+QUERY = """SELECT content, type
+  FROM (SELECT * FROM news
+         WHERE type IN ('sports')
+         LIMIT 50) AS tab1
+UNION ALL
+SELECT content, type
+  FROM (SELECT * FROM news
+         WHERE type IN ('entertainment')
+         LIMIT 50) AS tab2
+UNION ALL
+SELECT content, type
+  FROM (SELECT * FROM news
+         WHERE type IN ('business')
+         LIMIT 50) AS tab3
+UNION ALL
+SELECT content, type
+  FROM (SELECT * FROM news
+         WHERE type IN ('politics')
+         LIMIT 50) AS tab4
+UNION ALL
+SELECT content, type
+  FROM (SELECT * FROM news
+         WHERE type IN ('technology')
+         LIMIT 50) AS tab5"""
 
 
 KNN_PARAMS = {
 
-    'n_neighbors': [5],
+    'n_neighbors': [100],
     'metric': ['euclidean', 'minkowski', 'manhattan']
 }
 
