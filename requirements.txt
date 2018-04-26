@@ -1,8 +1,0 @@
-pymysql
-numpy
-scipy
-scikit-learn
-nltk
-sklearn-evaluation
-mistune
-tabulate
