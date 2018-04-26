@@ -104,3 +104,4 @@ ENV/
 .idea/
 classification/saved/
 machine_learning/classification/saved/
+machine_learning/.idea
